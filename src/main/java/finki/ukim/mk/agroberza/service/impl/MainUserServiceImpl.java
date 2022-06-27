@@ -13,8 +13,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class MainUserServiceImpl implements MainUserService {
     MainUserRepository mainUserRepository;
+    
+
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    public MainUserServiceImpl(MainUserRepository mainUserRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.mainUserRepository = mainUserRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     @Override
     public List<MainUser> findAll() {

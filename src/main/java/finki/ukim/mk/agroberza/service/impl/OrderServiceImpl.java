@@ -17,6 +17,11 @@ public class OrderServiceImpl implements OrderService {
     private OrderRepository orderRepository;
     private ProductService productService;
 
+    public OrderServiceImpl(OrderRepository orderRepository, ProductService productService) {
+        this.orderRepository = orderRepository;
+        this.productService = productService;
+    }
+
     @Override
     public List<Naracka> findAll() {
         return this.orderRepository.findAll();
