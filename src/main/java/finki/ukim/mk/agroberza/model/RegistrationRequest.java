@@ -2,8 +2,6 @@ package finki.ukim.mk.agroberza.model;
 
 import finki.ukim.mk.agroberza.model.enums.UserCategory;
 
-
-
 public class RegistrationRequest {
     private String username;
     private String name;

@@ -11,9 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
-
 public class RegistrationController {
     private RegistrationService registrationService;
+
+    public RegistrationController(RegistrationService registrationService) {
+        this.registrationService = registrationService;
+    }
 
     @GetMapping("/register")
     public String register_page() {
