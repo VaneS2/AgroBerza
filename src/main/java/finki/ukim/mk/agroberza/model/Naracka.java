@@ -5,14 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-@Data
 @Entity(name = "naracka")
-@NoArgsConstructor
-@Getter
+
 public class Naracka implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,4 +39,22 @@ public class Naracka implements Serializable {
         this.orderToUserId = orderToUserId;
     }
 
+    public Naracka() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Long getOrderedByUserId() {
+        return orderedByUserId;
+    }
+
+    public Long getOrderToUserId() {
+        return orderToUserId;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
 }

@@ -10,20 +10,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-@Data
-@Getter
-@Setter
-@EqualsAndHashCode
-@NoArgsConstructor
+
+
 @Entity(name = "main_user")
 public class MainUser implements UserDetails {
     @Id
@@ -84,5 +77,82 @@ public class MainUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public MainUser() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public AppUserRole getAppUserRole() {
+        return appUserRole;
+    }
+
+    public Boolean getLocked() {
+        return locked;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public UserCategory getUserCategory() {
+        return userCategory;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setAppUserRole(AppUserRole appUserRole) {
+        this.appUserRole = appUserRole;
+    }
+
+    public void setLocked(Boolean locked) {
+        this.locked = locked;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public void setUserCategory(UserCategory userCategory) {
+        this.userCategory = userCategory;
     }
 }

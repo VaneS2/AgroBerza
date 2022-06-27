@@ -8,11 +8,11 @@ import finki.ukim.mk.agroberza.service.ProductService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import lombok.AllArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
+
 public class OrderServiceImpl implements OrderService {
     private OrderRepository orderRepository;
     private ProductService productService;
