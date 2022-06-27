@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class MainUserServiceImpl implements MainUserService {
     MainUserRepository mainUserRepository;
-    
-
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public MainUserServiceImpl(MainUserRepository mainUserRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
