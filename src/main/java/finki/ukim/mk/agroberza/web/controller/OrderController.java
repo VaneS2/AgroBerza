@@ -35,13 +35,24 @@ public class OrderController {
     @GetMapping
     private String getOrdersForUser(Model model) {
         MainUser currentUser = (MainUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", currentUser);
         Long userId = currentUser.getId();
         List<Naracka> narackaList = new ArrayList<>();
 
         narackaList.addAll(this.orderService.findAllByOrderedByUserId(userId));
         Collections.reverse(narackaList);
+
+
+      /*  for(int i=0;i<narackaList.size();i++)
+        {
+            narackaList.get(i).brojO=mainUserService.findById(narackaList.get(i).getProducts().get(0).getOwnerId()).orElse(null).number;
+            narackaList.get(i).gradO=mainUserService.findById(narackaList.get(i).getProducts().get(0).getOwnerId()).orElse(null).city;
+            narackaList.get(i).orderToUserName=mainUserService.findById(narackaList.get(i).getProducts().get(0).getOwnerId()).orElse(null).getName();
+        }
+*/
+
         model.addAttribute("orders", narackaList);
-        model.addAttribute("user", currentUser);
+
         model.addAttribute("bodyContent","orders-page");
         return "master-page";
 
@@ -49,7 +60,6 @@ public class OrderController {
 
     @GetMapping("/naracki")
     private String naracki(Model model,@RequestParam(required = false) String error) {
-
 
         if(error!=null)
         {
@@ -61,6 +71,18 @@ public class OrderController {
         List<Naracka> narackaList = new ArrayList<>();
         narackaList.addAll(this.orderService.findAllByOrderToUserId(userId));
         Collections.reverse(narackaList);
+
+        ArrayList<String> users= new ArrayList<>();
+
+        for(int i=0;i<narackaList.size();i++)
+        {
+            narackaList.get(i).broj=(mainUserService.findById(narackaList.get(i).getOrderedByUserId()).orElse(null).number);
+            narackaList.get(i).grad=(mainUserService.findById(narackaList.get(i).getOrderedByUserId()).orElse(null).city);
+
+            narackaList.get(i).orderedByUserName=(mainUserService.findById(narackaList.get(i).getOrderedByUserId()).orElse(null).getName());
+            narackaList.get(i).orderedByUserName+=" " +(mainUserService.findById(narackaList.get(i).getOrderedByUserId()).orElse(null).getSurname());
+        }
+
         model.addAttribute("orders", narackaList);
         model.addAttribute("user", currentUser);
         model.addAttribute("bodyContent","naracki");
@@ -85,8 +107,10 @@ public class OrderController {
             this.orderService.editOrderById(id, order);
             return "redirect:/orders/naracki?error=NO";
         }
-
-        this.productService.edit(p.getId(),p.getName(), p.getPrice(), p.getQuantity()-order.quantity);
+        Product product= new Product(p.getId(),p.getName(), p.getPrice(), p.getQuantity()-order.quantity);
+        product.img=p.getImg();
+        product.description=p.description;
+        this.productService.edit(product);
         order.setStatus(Status.TRUE);
         this.orderService.editOrderById(id, order);
         return "redirect:/orders/naracki";
