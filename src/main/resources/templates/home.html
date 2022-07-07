@@ -23,7 +23,7 @@
 </div>
 
 
-  <div style="font-family: Roboto" class="text-center">
+  <div class="text-center">
     <hr>
    <b><h1 style="font-family: Roboto">Welcome to Our Page</h1></b>
       <br>
@@ -33,16 +33,21 @@
           THIS FUNCTIONALITY IS VERY SIGNIFICANT BECAUSE IT WILL
           ALLOW FARMERS TO MORE EASILY SELL THEIR AGRICULTURAL PRODUCTS.
       </h5>
-
-
-
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
       <br>
       <br>
+
+      <div sec:authorize="isAnonymous()" class="container">
+          <div class="row">
+              <div  class="col display-3"><a class="btn btn-primary btn-lg  " href="/register" role="button">MAKE YOUR ACCOUNT HERE</a> </div>
+          </div>
+      </div>
+
+
+      <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
   </div>
     </div>
