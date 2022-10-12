@@ -15,6 +15,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/products")
 
+
 public class ProductController {
     private final ProductService productService;
     private final MainUserService userService;
